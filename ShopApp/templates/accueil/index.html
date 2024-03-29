@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="fr">
+
+    <head>
+        <meta charset="utf-8">
+        <title>Boutique home</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="" name="keywords">
+        <meta content="" name="description">
+        {% include "accueil/partition/home_h_link.html" %}
+          
+    </head>
+
+    <body>
+
+        <!-- Spinner Start -->
+        <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+            <div class="spinner-grow text-primary" role="status"></div>
+        </div>
+        <!-- Spinner End -->
+
+        
+
+       
+
+        <!-- Navbar start -->
+        {% include "partition/navbar.html" %}
+        <!-- Navbar End -->
+
+
+        <!-- Section Hero  -->
+         {% include "accueil/partition/home_hero.html" %}
+        <!-- fin setion Hero-->
+
+
+        <!-- Featurs Section Start -->
+        {% include "accueil/partition/home_feature.html" %}
+        <!-- Featurs Section End -->
+
+
+        <!-- Fruits à vendre-->
+            {% include 'accueil/partition/home_fruits.html'  %}
+        <!-- Fruits Shop End-->
+
+
+        <!-- Featurs Start -->
+        {% include 'accueil/partition/home_feature2.html' %}
+        <!-- Featurs End -->
+
+
+        <!-- Vesitable Shop Start-->
+        {% include 'accueil/partition/home_produit_carousel.html' %}
+      
+        <!-- Vesitable Shop End -->
+
+
+        <!-- Banner Section Start-->
+         {% include 'accueil/partition/home_banner.html' %}
+      
+        <!-- Banner Section End -->
+
+
+        <!-- Bestsaler Product Start -->
+        
+        {% include 'accueil/partition/home_bestsalers.html' %}
+        <!-- statitiques Start -->
+          {% include 'accueil/partition/home_statistique.html' %}
+        <!-- statistique Start -->
+
+
+        <!-- Tastimonial Start -->
+            {% include 'accueil/partition/home_testimony.html' %}
+        <!-- Section temoignages -->
+
+        <!--Pied de page -->
+        {% include "accueil/partition/home_footer.html" %}
+        <!-- Retour en haut de page -->
+        <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>   
+
+    
+    <!-- Librairie javaScript home-f-link -->
+      {% include "accueil/partition/home_f_link.html" %}
+
+
+    </body>
+
+</html>
