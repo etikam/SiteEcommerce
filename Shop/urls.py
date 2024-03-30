@@ -25,5 +25,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',accueil,name="accueil"),
     path('products',products,name="shop"),
-    path('detail_produit/<str:slug>',detail_produit,name="detail_produit"),
+    path('detail_produit/<str:slug>/',detail_produit,name="detail_produit"),
+     path('cart', cart, name='cart'),
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
