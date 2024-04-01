@@ -41,7 +41,18 @@ class Commande(models.Model):
     numero_maison = models.CharField(max_length=50,blank=True)
     status = models.BooleanField(default=False)
     montant = models.FloatField()
-   
+    date_commande = models.DateField(auto_now=False, auto_now_add=False)
+
     
+
+class produit_commander(models.Model):
+    nom = models.CharField(max_length=50)
+    quantite = models.IntegerField()
+    prix_unitaire = models.FloatField()
+    commande = models.ForeignKey(Commande,on_delete=models.CASCADE)
     
+    def prix_total(self):
+        return self.prix_unitaire*self.quantite
+
+
     
