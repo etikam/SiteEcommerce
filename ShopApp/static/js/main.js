@@ -113,7 +113,8 @@
 
 
     // Modal Video
-    $(document).ready(function () {
+   
+   /* $(document).ready(function () {
         var $videoSrc;
         $('.btn-play').click(function () {
             $videoSrc = $(this).data("src");
@@ -129,7 +130,7 @@
         })
     });
 
-
+*/
 
     // Product Quantity
     $('.quantity button').on('click', function () {

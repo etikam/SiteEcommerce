@@ -27,3 +27,21 @@ class CarouselHero(models.Model):
     nom = models.CharField(max_length=50, null=True)
     image = models.ImageField(upload_to="carouselHero")
     categorie = models.ForeignKey(Categorie , on_delete=models.CASCADE)
+
+
+class Commande(models.Model):
+    nom_client = models.CharField(max_length=50)
+    prenom_client = models.CharField(max_length=50)
+    telephone_client = models.CharField(max_length=50)
+    email_client = models.CharField(max_length=50)
+    adresse_client = models.CharField(max_length=50)
+    ville_client = models.CharField(max_length=50)
+    pays_client = models.CharField(max_length=50)
+    rue = models.CharField(max_length=50, blank=True)
+    numero_maison = models.CharField(max_length=50,blank=True)
+    status = models.BooleanField(default=False)
+    montant = models.FloatField()
+   
+    
+    
+    

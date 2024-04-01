@@ -43,29 +43,8 @@ def detail_produit(request,slug):
 
 
 
-def cart(request):
-    if request.method == 'POST':
-        # Récupérer les données du panier envoyées par la requête POST
-        panier_data = request.POST.get('panier', None)
-
-        # Vérifier si des données de panier ont été envoyées
-        if panier_data:
-            # Convertir les données du panier au format JSON en objet Python
-            panier = json.loads(panier_data)
-
-            # Récupérer les produits du panier depuis la base de données
-            produits = Produit.objects.filter(id__in=panier.keys())
-
-            # Calculer la somme des prix des produits dans le panier
-            total_prix = sum(produit.prix * panier[str(produit.id)] for produit in produits)
-
-            # Envoyer les données calculées à un template pour affichage
-            context = {
-                'produits': produits,
-                'total_prix': total_prix
-            }
-            return render(request, 'cart.html', context)
-
-    else:
-        return render(request,"404.html")
+def renseignement(request):
+    
+       return render(request,"info_to_commande.html")
+ 
    
