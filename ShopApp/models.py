@@ -27,3 +27,5 @@ class CarouselHero(models.Model):
     nom = models.CharField(max_length=50, null=True)
     image = models.ImageField(upload_to="carouselHero")
     categorie = models.ForeignKey(Categorie , on_delete=models.CASCADE)
+
+
