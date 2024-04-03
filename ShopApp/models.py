@@ -30,29 +30,29 @@ class CarouselHero(models.Model):
 
 
 class Commande(models.Model):
-    nom_client = models.CharField(max_length=50)
-    prenom_client = models.CharField(max_length=50)
-    telephone_client = models.CharField(max_length=50)
-    email_client = models.CharField(max_length=50)
-    adresse_client = models.CharField(max_length=50)
-    ville_client = models.CharField(max_length=50)
-    pays_client = models.CharField(max_length=50)
-    rue = models.CharField(max_length=50, blank=True)
-    numero_maison = models.CharField(max_length=50,blank=True)
-    status = models.BooleanField(default=False)
+    prenom = models.CharField(max_length=50)
+    nom = models.CharField(max_length=50)
+    telephone = models.CharField(max_length=50)
+    email = models.CharField(max_length=50, null=True, blank=True)
+    adresse = models.CharField(max_length=50)
+    ville = models.CharField(max_length=50)
+    pays = models.CharField(max_length=50)
+    livrer = models.BooleanField(default=False)
     montant = models.FloatField()
     date_commande = models.DateField(auto_now=False, auto_now_add=False)
-
+    autre_details = models.TextField(null=True, blank=True) #champ pour recueillir d'autre informations suplementaires que le client pourrait donner
+    def __str__(self):
+        return f"{self.nom}/{self.prenom}"
     
 
 class produit_commander(models.Model):
-    nom = models.CharField(max_length=50)
+    titre = models.CharField(max_length=50)
     quantite = models.IntegerField()
-    prix_unitaire = models.FloatField()
+    pu = models.FloatField()
     commande = models.ForeignKey(Commande,on_delete=models.CASCADE)
     
     def prix_total(self):
-        return self.prix_unitaire*self.quantite
+        return self.pu*self.quantite
 
 
     

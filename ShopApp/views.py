@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import * 
+from django.utils import timezone
 import json
 
 # Create your views here.
@@ -42,9 +43,52 @@ def detail_produit(request,slug):
     return render(request,"details/index.html",context)
 
 
-
-def renseignement(request):
+def passer_commande(request):
+    if request.method == "POST":
+        # Capturer les données du formulaire
+        prenom = request.POST.get("prenom")
+        nom = request.POST.get("nom")
+        telephone = request.POST.get("telephone")
+        email = request.POST.get("email")
+        adresse = request.POST.get("adresse")
+        ville = request.POST.get("ville")
+        pays = request.POST.get("pays")
+        montant = float(request.POST.get("montant"))
     
-       return render(request,"info_to_commande.html")
- 
+        autre_details = request.POST.get("autre_info")
+
+        # Capturer les données du panier depuis le localStorage
+        panier = json.loads(request.POST.get("panier"))
+        # Créer une instance de Commande et sauvegarder dans la base de données
+        commande = Commande.objects.create(
+            prenom=prenom,
+            nom=nom,
+            telephone=telephone,
+            email=email,
+            adresse=adresse,
+            ville=ville,
+            pays=pays,
+            montant=montant,
+            date_commande=timezone.now(),
+            autre_details=autre_details
+        )
+        
+        # Enregistrer chaque produit commandé dans la base de données
+        for produit_id, produit_info in panier.items():
+            produit_commander.objects.create(
+                titre=produit_info['nom'],
+                quantite=produit_info['quantite'],
+                pu=produit_info['prix'],
+                commande=commande
+            )
+
+        # Rediriger vers la page de succès de la commande
+        return render(request, "commande_succes.html")
+    else:
+        return render(request, "info_to_commande.html")
    
+
+
+def boutique(request):
+    
+    return render(request,"boutique/index.html")

@@ -26,5 +26,6 @@ urlpatterns = [
     path('',accueil,name="accueil"),
     path('products',products,name="shop"),
     path('detail_produit/<str:slug>/',detail_produit,name="detail_produit"),
-     path('checking_out', renseignement, name='renseignement'),
+    path('checking_out', passer_commande, name='passer_commande'),
+    path('boutique', boutique, name='boutique'),
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
