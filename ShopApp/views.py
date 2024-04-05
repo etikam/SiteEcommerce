@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import * 
 from django.utils import timezone
 import json
+from django.core.paginator import Paginator
 
 # Create your views here.
 
@@ -33,13 +34,12 @@ def detail_produit(request,slug):
     produit = Produit.objects.get(slug=slug)
     related_produits = Produit.objects.filter(categorie=produit.categorie).exclude(id=produit.id)
     toutes_categorie = Categorie.objects.all()
-    
+     
     context = {
         "produit":produit,
         "related_produit":related_produits,
         "categories":toutes_categorie,
     }   
-        
     return render(request,"details/index.html",context)
 
 
@@ -88,7 +88,15 @@ def passer_commande(request):
         return render(request, "info_to_commande.html")
    
 
-
 def boutique(request):
-    
-    return render(request,"boutique/index.html")
+    produits_list = Produit.objects.all().order_by("date_ajout")
+    paginator = Paginator(produits_list, 10)  # 10 produits par page pour le systeme de pagination
+    page_number = request.GET.get('page')
+    produits = paginator.get_page(page_number)
+    categories = Categorie.objects.all()
+
+    context = {
+        'produits': produits,
+        'categories': categories
+    }
+    return render(request, "boutique/index.html", context)

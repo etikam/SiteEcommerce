@@ -1,10 +1,42 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
-    <head> 
-    </head>
-    <body>
-        {% block body %}
 
+    <head>
+       
+        <meta charset="utf-8">
+        <title>{% block title %}
+            {% endblock title %}</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="" name="keywords">
+        <meta content="" name="description">
+        {% block head_link %}
+            <!-- les lien d'entete de toutes les pages-->
+            {% include "partition/header_link.html" %}    
         {% endblock %}
+    </head>
+
+    <body>
+            {% block navbar %}
+                <!-- la barre de navigation -->
+                    {% include "partition/navbar.html" %}
+            
+            {% endblock navbar %}
+
+            {% block content_page %}
+             
+            <!-- Ici le contenu de chaque page qui va hérité de base-->
+            {% endblock %}
+
+
+            {% block footer %}
+             <!--Pied de page -->
+                {% include "partition/footer.html" %}
+            {% endblock footer %}
+
+            {% block footer_link %}
+                <!-- les liens js et le code js-->
+                {% include "partition/footer_link.html" %}
+            {% endblock  %}
     </body>
 </html>
